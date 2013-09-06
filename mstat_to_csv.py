@@ -11,7 +11,7 @@
 #  No defined column seperator
 #  Automatic insert of header fields ever 10 lines or so.
 #
-# Mongostat_sane.py can read from stdin (via a pipe) or a file and write to stdout or a file.
+# mstat_to_csv.py can read from stdin (via a pipe) or a file and write to stdout or a file.
 #
 # By default it converts all input into CSV format.
 #
@@ -36,7 +36,7 @@ import re
 import argparse
 import collections
 
-column_order = [ 'insert', # 0
+column_order = [   'insert', # 0
                    'query',        # 1
                    'update',       # 2
                    'delete',       # 3
@@ -135,7 +135,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser( description="Program to parse the output of mongostat into a CSV file" )
 
-    parser.add_argument('--version', action='version', version='%(prog)s 0.2.1 beta')
+    parser.add_argument('--version', action='version', version='%(prog)s 0.2.2 beta')
 
     parser.add_argument( "--output", 
                          help="Define an output file to write to (default is stdout)",
@@ -178,30 +178,30 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.input == "stdin" :
-        input = sys.stdin 
+        input_stream = sys.stdin 
     else :
-        input = open( args.input, "r" ) ;
+        input_stream = open( args.input, "r" ) ;
 
     writeStr = "wb"
     if args.output == "stdout" :
-        output = sys.stdout 
+        output_stream = sys.stdout 
     else :
         if args.append :
             writeStr = "ab" ;
             
-        output = open( args.output, writeStr )
+        output_stream = open( args.output, writeStr )
 
     if args.listallcolumns :
-        output.write( ','.join( column_order )) 
-        output.write( "\n" ) 
-        output.close()
+        output_stream.write( ','.join( column_order )) 
+        output_stream.write( "\n" ) 
+        output_stream.close()
         sys.exit( 0 )
 
-    x = input.readline()  #
+    x = input_stream.readline()  #
  
     if x.startswith( "connected" ) :
 #        print( x.rstrip( "\n" ))
-        x = input.readline()  # strip of connected to
+        x = input_stream.readline()  # strip of connected to
 
     if x.startswith( "insert" ) :
 #        print( x.rstrip( "\n" ))
@@ -230,33 +230,33 @@ if __name__ == '__main__':
             pass
         else:
             if args.rowcount :
-                output.write( "count," ) 
+                output_stream.write( "count," ) 
     
-            output.write( processHeader( actual_columns, selected_columns )) # print headers once
+            output_stream.write( processHeader( actual_columns, selected_columns )) # print headers once
             
-            output.write( "\n" ) 
+            output_stream.write( "\n" ) 
 
             if args.listcolumns :
                 sys.exit( 0 ) # we are done.
 
-        x = input.readline()  # 
+        x = input_stream.readline()  # 
 
     rowcounter = 1
     while x :
         if x.startswith( "insert" ) :
-            x = input.readline()
+            x = input_stream.readline()
             continue # strip out occasional header lines
 
         if args.rowcount :
-            output.write( "%i," % rowcounter ) ;
+            output_stream.write( "%i," % rowcounter ) ;
             rowcounter += 1 
 
-        output.write( processLine( x.rstrip( "\n" ), actual_columns, selected_columns )) # print headers once
+        output_stream.write( processLine( x.rstrip( "\n" ), actual_columns, selected_columns )) # print headers once
         
-        output.flush() 
+        output_stream.flush() 
 #        print( x.rstrip( "\n" ))
-        x = input.readline()
+        x = input_stream.readline()
 
-    input.close()
-    output.close()
+    input_stream.close()
+    output_stream.close()
     
