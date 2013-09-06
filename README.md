@@ -7,18 +7,18 @@ Mongostat to CSV Conversion Script
 
 Program to parse the output of mongostat into a CSV file
 
-optional arguments:
-  -h, --help         show this help message and exit
-  --version          show program's version number and exit
-  --output OUTPUT    Define an output file to write to (default is stdout)
-  --append           Append output to the file specified by --output
-  --noheaders        Don't output header columns (useful with --append)
-  --input INPUT      Define an input file tor read from (default is stdin)
-  --columns COLUMNS  Only output named columns in the order they appear on the
-                     command line
-  --rowcount         add a column to the left that numbers each row of output
-  --listallcolumns   list out canonical column headings and exit
-  --listcolumns      list out columns in current output and exit
+    optional arguments:
+      -h, --help         show this help message and exit
+      --version          show program's version number and exit
+      --output OUTPUT    Define an output file to write to (default is stdout)
+      --append           Append output to the file specified by --output
+      --noheaders        Don't output header columns (useful with --append)
+      --input INPUT      Define an input file tor read from (default is stdin)
+      --columns COLUMNS  Only output named columns in the order they appear on the
+                         command line
+      --rowcount         add a column to the left that numbers each row of output
+      --listallcolumns   list out canonical column headings and exit
+      --listcolumns      list out columns in current output and exit
 
 Example usage:
 
