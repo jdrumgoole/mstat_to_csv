@@ -37,48 +37,48 @@ import argparse
 import collections
 
 column_order = [ 'insert', # 0
-           'query',        # 1
-           'update',       # 2
-           'delete',       # 3
-           'getmore',      # 4
-           'command',      # 5
-           'flushes',      # 6
-           'mapped',       # 7
-           'vsize',        # 8
-           'res',          # 9
-           'faults',       # 10
-           'locked db',    # 11
-           'idx miss %',   # 12
-           'qr|qw',        # 13
-           'ar|aw',        # 14
-           'netIn',        # 15
-           'netOut',       # 16
-           'conn',         # 17
-           'set',          # 18
-           'repl',         # 19
-           'time' ]        # 20
+                   'query',        # 1
+                   'update',       # 2
+                   'delete',       # 3
+                   'getmore',      # 4
+                   'command',      # 5
+                   'flushes',      # 6
+                   'mapped',       # 7
+                   'vsize',        # 8
+                   'res',          # 9
+                   'faults',       # 10
+                   'locked db',    # 11
+                   'idx miss %',   # 12
+                   'qr|qw',        # 13
+                   'ar|aw',        # 14
+                   'netIn',        # 15
+                   'netOut',       # 16
+                   'conn',         # 17
+                   'set',          # 18
+                   'repl',         # 19
+                   'time' ]        # 20
 
 column_indexes = { 'insert'    : 0,
-           'query'      : 1,
-           'update'     : 2,
-           'delete'     : 3,
-           'getmore'    : 4,
-           'command'    : 5,
-           'flushes'    : 6,
-           'mapped'     : 7,
-           'vsize'      : 8,
-           'res'        : 9,
-           'faults'     : 10,
-           'locked db'  : 11,
-           'idx miss %' : 12,
-           'qr|qw'      : 13,
-           'ar|aw'      : 14,
-           'netIn'      : 15,
-           'netOut'     : 16,
-           'conn'       : 17,
-           'set'        : 28,
-           'repl'       : 10,
-           'time'       : 20 }  #also set and repl but not for this version
+                   'query'      : 1,
+                   'update'     : 2,
+                   'delete'     : 3,
+                   'getmore'    : 4,
+                   'command'    : 5,
+                   'flushes'    : 6,
+                   'mapped'     : 7,
+                   'vsize'      : 8,
+                   'res'        : 9,
+                   'faults'     : 10,
+                   'locked db'  : 11,
+                   'idx miss %' : 12,
+                   'qr|qw'      : 13,
+                   'ar|aw'      : 14,
+                   'netIn'      : 15,
+                   'netOut'     : 16,
+                   'conn'       : 17,
+                   'set'        : 28,
+                   'repl'       : 10,
+                   'time'       : 20 }  #also set and repl but not for this version
 
 
 def parseHeader( canonical_columns, x ) :
